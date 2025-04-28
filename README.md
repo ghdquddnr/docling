@@ -25,100 +25,95 @@
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/10101/badge)](https://www.bestpractices.dev/projects/10101)
 [![LF AI & Data](https://img.shields.io/badge/LF%20AI%20%26%20Data-003778?logo=linuxfoundation&logoColor=fff&color=0094ff&labelColor=003778)](https://lfaidata.foundation/projects/)
 
-Docling simplifies document processing, parsing diverse formats — including advanced PDF understanding — and providing seamless integrations with the gen AI ecosystem.
+Docling은 다양한 형식의 문서 처리와 파싱을 단순화하며, 고급 PDF 이해 기능을 포함하여 생성형 AI 생태계와의 원활한 통합을 제공합니다.
 
-## Features
+## 주요 기능
 
-* 🗂️ Parsing of [multiple document formats][supported_formats] incl. PDF, DOCX, XLSX, HTML, images, and more
-* 📑 Advanced PDF understanding incl. page layout, reading order, table structure, code, formulas, image classification, and more
-* 🧬 Unified, expressive [DoclingDocument][docling_document] representation format
-* ↪️ Various [export formats][supported_formats] and options, including Markdown, HTML, and lossless JSON
-* 🔒 Local execution capabilities for sensitive data and air-gapped environments
-* 🤖 Plug-and-play [integrations][integrations] incl. LangChain, LlamaIndex, Crew AI & Haystack for agentic AI
-* 🔍 Extensive OCR support for scanned PDFs and images
-* 🥚 Support of Visual Language Models ([SmolDocling](https://huggingface.co/ds4sd/SmolDocling-256M-preview)) 🆕
-* 💻 Simple and convenient CLI
+* 🗂️ PDF, DOCX, XLSX, HTML, 이미지 등 [다양한 문서 형식][supported_formats] 파싱
+* 📑 페이지 레이아웃, 읽기 순서, 테이블 구조, 코드, 수식, 이미지 분류 등을 포함한 고급 PDF 이해
+* 🧬 통합된 표현력 있는 [DoclingDocument][docling_document] 표현 형식
+* ↪️ Markdown, HTML, 무손실 JSON을 포함한 다양한 [내보내기 형식][supported_formats] 및 옵션
+* 🔒 민감한 데이터와 에어갭 환경을 위한 로컬 실행 기능
+* 🤖 LangChain, LlamaIndex, Crew AI & Haystack을 포함한 플러그 앤 플레이 [통합][integrations] 기능
+* 🔍 스캔된 PDF와 이미지를 위한 광범위한 OCR 지원
+* 🥚 시각적 언어 모델 지원 ([SmolDocling](https://huggingface.co/ds4sd/SmolDocling-256M-preview)) 🆕
+* 💻 간단하고 편리한 CLI
 
-### Coming soon
+### 곧 출시 예정
 
-* 📝 Metadata extraction, including title, authors, references & language
-* 📝 Chart understanding (Barchart, Piechart, LinePlot, etc)
-* 📝 Complex chemistry understanding (Molecular structures)
+* 📝 제목, 저자, 참조 및 언어를 포함한 메타데이터 추출
+* 📝 차트 이해 (막대 그래프, 파이 차트, 선 그래프 등)
+* 📝 복잡한 화학 구조 이해 (분자 구조)
 
-## Installation
+## 설치
 
-To use Docling, simply install `docling` from your package manager, e.g. pip:
+Docling을 사용하려면 패키지 관리자(예: pip)를 통해 `docling`을 설치하세요:
 ```bash
 pip install docling
 ```
 
-Works on macOS, Linux and Windows environments. Both x86_64 and arm64 architectures.
+macOS, Linux 및 Windows 환경에서 작동합니다. x86_64 및 arm64 아키텍처 모두 지원합니다.
 
-More [detailed installation instructions](https://docling-project.github.io/docling/installation/) are available in the docs.
+더 자세한 [설치 지침](https://docling-project.github.io/docling/installation/)은 문서에서 확인할 수 있습니다.
 
-## Getting started
+## 시작하기
 
-To convert individual documents with python, use `convert()`, for example:
+Python으로 개별 문서를 변환하려면 `convert()`를 사용하세요. 예시:
 
 ```python
 from docling.document_converter import DocumentConverter
 
-source = "https://arxiv.org/pdf/2408.09869"  # document per local path or URL
+source = "https://arxiv.org/pdf/2408.09869"  # 로컬 경로 또는 URL의 문서
 converter = DocumentConverter()
 result = converter.convert(source)
-print(result.document.export_to_markdown())  # output: "## Docling Technical Report[...]"
+print(result.document.export_to_markdown())  # 출력: "## Docling Technical Report[...]"
 ```
 
-More [advanced usage options](https://docling-project.github.io/docling/usage/) are available in
-the docs.
+더 [고급 사용 옵션](https://docling-project.github.io/docling/usage/)은 문서에서 확인할 수 있습니다.
 
 ## CLI
 
-Docling has a built-in CLI to run conversions.
+Docling은 변환을 실행하기 위한 내장 CLI를 제공합니다.
 
 ```bash
 docling https://arxiv.org/pdf/2206.01062
 ```
 
-You can also use 🥚[SmolDocling](https://huggingface.co/ds4sd/SmolDocling-256M-preview) and other VLMs via Docling CLI:
+🥚[SmolDocling](https://huggingface.co/ds4sd/SmolDocling-256M-preview) 및 기타 VLM을 Docling CLI를 통해 사용할 수도 있습니다:
 ```bash
 docling --pipeline vlm --vlm-model smoldocling https://arxiv.org/pdf/2206.01062
 ```
-This will use MLX acceleration on supported Apple Silicon hardware.
+이것은 지원되는 Apple Silicon 하드웨어에서 MLX 가속을 사용합니다.
 
-Read more [here](https://docling-project.github.io/docling/usage/)
+자세한 내용은 [여기](https://docling-project.github.io/docling/usage/)에서 확인하세요.
 
-## Documentation
+## 문서
 
-Check out Docling's [documentation](https://docling-project.github.io/docling/), for details on
-installation, usage, concepts, recipes, extensions, and more.
+Docling의 [문서](https://docling-project.github.io/docling/)에서 설치, 사용법, 개념, 레시피, 확장 기능 등에 대한 자세한 내용을 확인하세요.
 
-## Examples
+## 예제
 
-Go hands-on with our [examples](https://docling-project.github.io/docling/examples/),
-demonstrating how to address different application use cases with Docling.
+Docling을 사용하여 다양한 애플리케이션 사용 사례를 해결하는 방법을 보여주는 [예제](https://docling-project.github.io/docling/examples/)를 직접 경험해보세요.
 
-## Integrations
+## 통합
 
-To further accelerate your AI application development, check out Docling's native
-[integrations](https://docling-project.github.io/docling/integrations/) with popular frameworks
-and tools.
+AI 애플리케이션 개발을 더욱 가속화하려면 Docling의 인기 있는 프레임워크 및 도구와의 네이티브 [통합](https://docling-project.github.io/docling/integrations/)을 확인하세요.
 
-## Get help and support
+## 도움말 및 지원
 
-Please feel free to connect with us using the [discussion section](https://github.com/docling-project/docling/discussions).
+[토론 섹션](https://github.com/docling-project/docling/discussions)을 통해 언제든지 저희와 연락하세요.
 
-## Technical report
+## 기술 보고서
 
-For more details on Docling's inner workings, check out the [Docling Technical Report](https://arxiv.org/abs/2408.09869).
+Docling의 내부 작동 방식에 대한 자세한 내용은 [Docling 기술 보고서](https://arxiv.org/abs/2408.09869)를 확인하세요.
 
-## Contributing
+## 기여하기
 
-Please read [Contributing to Docling](https://github.com/docling-project/docling/blob/main/CONTRIBUTING.md) for details.
+자세한 내용은 [Docling에 기여하기](https://github.com/docling-project/docling/blob/main/CONTRIBUTING.md)를 읽어주세요.
 
-## References
+## 참고 문헌
 
-If you use Docling in your projects, please consider citing the following:
+프로젝트에서 Docling을 사용하는 경우 다음을 인용해 주세요:
 
 ```bib
 @techreport{Docling,
@@ -133,18 +128,18 @@ If you use Docling in your projects, please consider citing the following:
 }
 ```
 
-## License
+## 라이선스
 
-The Docling codebase is under MIT license.
-For individual model usage, please refer to the model licenses found in the original packages.
+Docling 코드베이스는 MIT 라이선스 하에 있습니다.
+개별 모델 사용에 대해서는 원본 패키지에서 찾을 수 있는 모델 라이선스를 참조하세요.
 
 ## LF AI & Data
 
-Docling is hosted as a project in the [LF AI & Data Foundation](https://lfaidata.foundation/projects/).
+Docling은 [LF AI & Data Foundation](https://lfaidata.foundation/projects/)의 프로젝트로 호스팅됩니다.
 
-### IBM ❤️ Open Source AI
+### IBM ❤️ 오픈 소스 AI
 
-The project was started by the AI for knowledge team at IBM Research Zurich.
+이 프로젝트는 IBM Research Zurich의 AI for knowledge 팀에서 시작되었습니다.
 
 [supported_formats]: https://docling-project.github.io/docling/usage/supported_formats/
 [docling_document]: https://docling-project.github.io/docling/concepts/docling_document/
